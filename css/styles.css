@@ -2188,10 +2188,23 @@ a:hover.back-to-top {
 }
 /* end of min-width 1200px */
 
-.buttoninmap{
-
+.buttoninmap {
   position: absolute;
   z-index: 5;
+}
 
+.btnmap {
+  display: inline-block;
+  padding: 1.1875rem 2.125rem 1.1875rem 2.125rem;
+  border: 0.125rem solid #ff556e;
+  background-color: #ff556e;
+  color: #fff;
+  font: 700 0.875rem/0 "Open Sans", sans-serif;
+  text-decoration: none;
+  transition: all 0.2s;
+}
 
+.btnmap:hover {
+  border: 0.125rem solid #ff556e;
+  color: #ffffff;
 }
