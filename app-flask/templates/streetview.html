@@ -1,0 +1,36 @@
+{% extends 'layout.html'%} {% block title %} pruebas {% endblock %} {% block
+content %}
+
+<style>
+  #map {
+    height: 100% !important;
+  }
+  #street-view {
+    height: 100%;
+  }
+</style>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<div class="ex-basic-2 mt-2">
+  <div class="container mt-5 mb-5">
+    <h4 class="">hola</h4>
+  </div>
+
+  <div class="container">
+    <div id="street-view"></div>
+  </div>
+
+  <div class="container">
+    <div id="map"></div>
+  </div>
+</div>
+
+<!-- script maps -->
+<script src="{{ url_for('static', filename='js/street.js')}}"></script>
+<!-- AIzaSyCQpZ-cabD1OMl-i9i1HUghROp7c0pP82c&map_ids=663481e2c353fdbc -->
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQpZ-cabD1OMl-i9i1HUghROp7c0pP82c&callback=initialize&v=weekly"
+  defer
+></script>
+
+{% endblock %}

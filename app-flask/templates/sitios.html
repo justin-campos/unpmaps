@@ -1,0 +1,112 @@
+{% extends 'layout.html'%} {% block title %}{% for sitio in sitio %}
+{{sitio["titulo"]}}{% endfor %} {% endblock %} {% block content %}
+
+<!-- Privacy Content -->
+{% for sitio in sitio %}
+<div class="ex-basic-2 mt-2">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="image-container-large">
+          <img class="img-fluid" src="{{sitio["imagen"]}}" alt="alternative" />
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="text-container">
+          <h3>{{sitio["titulo"]}}</h3>
+          <p>{{sitio["descripcion"]}}</p>
+        </div>
+      </div>
+
+      <div class="text-container">
+        <!-- end of row -->
+      </div>
+      <!-- end of text-container -->
+
+      <div class="text-container dark">
+        <p class="testimonial-text">{{sitio["informacion"]}}</p>
+      </div>
+      <!-- end of text container -->
+      {% if sitio['stvbool'] == 1 %}
+      <div class="container">
+        <h5>street view</h5>
+      </div>
+      {% endif %}
+      <!-- end of text-container -->
+      <a class="btn-solid-reg" href="/">REGRESAR</a>
+    </div>
+    <!-- end of col-->
+
+    <!-- end of row -->
+  </div>
+  <!-- end of container -->
+</div>
+{% endfor %}
+<!-- end of ex-basic-2 -->
+<!-- end of privacy content -->
+<div class="ex-basic-2">
+  <div class="container mt-3">
+    <div class="col-lg-12">
+      <div class="card-footer card-comments">
+        <div class="card-comment">
+          <!-- User image -->
+          <img
+            class="img-circle img-sm"
+            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            alt="User Image"
+          />
+
+          <div class="comment-text">
+            <span class="username">
+              Maria Gonzales
+              <span class="text-muted float-right">8:03 PM Today</span> </span
+            ><!-- /.username -->
+            It is a long established fact that a reader will be distracted by
+            the readable content of a page when looking at its layout.
+          </div>
+          <!-- /.comment-text -->
+        </div>
+        <!-- /.card-comment -->
+        <div class="card-comment">
+          <!-- User image -->
+          <img
+            class="img-circle img-sm"
+            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            alt="User Image"
+          />
+
+          <div class="comment-text">
+            <span class="username">
+              Luna Stark
+              <span class="text-muted float-right">8:03 PM Today</span> </span
+            ><!-- /.username -->
+            It is a long established fact that a reader will be distracted by
+            the readable content of a page when looking at its layout.
+          </div>
+          <!-- /.comment-text -->
+        </div>
+        <!-- /.card-comment -->
+      </div>
+      <!-- /.card-footer -->
+      <div class="card-footer">
+        <form action="#" method="post">
+          <div class="input-group">
+            <input
+              type="text"
+              name="message"
+              placeholder="Escribe tu comentario ..."
+              class="form-control"
+              autocomplete="OFF"
+            />
+            <span class="input-group-append">
+              <button type="submit" class="btn-solid-regc">Enviar</button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

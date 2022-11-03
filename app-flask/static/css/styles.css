@@ -149,6 +149,23 @@ a.red {
   text-decoration: none;
 }
 
+.btn-solid-regc {
+  display: inline-block;
+  padding: 1.1875rem 2.125rem 1.1875rem 2.125rem;
+  border: 0.125rem solid #ff556e;
+  background-color: #ff556e;
+  color: #fff;
+  font: 700 0.875rem/0 "Open Sans", sans-serif;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-solid-regc:hover {
+  background-color: #c94558;
+  border: 0.125rem solid #ff556e;
+  text-decoration: none;
+}
+
 .btn-solid-lg {
   display: inline-block;
   padding: 1.5rem 2.375rem 1.5rem 2.375rem;
@@ -810,6 +827,10 @@ input[type="checkbox"] {
   padding-bottom: 3rem;
   background-color: #f7fafd;
   text-align: center;
+}
+
+.loginheader {
+  padding-bottom: 14rem;
 }
 
 .header .text-container {
@@ -2207,4 +2228,76 @@ a:hover.back-to-top {
 .btnmap:hover {
   border: 0.125rem solid #ff556e;
   color: #ffffff;
+}
+
+.card-comments {
+  background-color: #f8f9fa;
+}
+.card-comments .card-comment {
+  border-bottom: 1px solid #e9ecef;
+  padding: 8px 0;
+}
+.card-comments .card-comment::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.card-comments .card-comment:last-of-type {
+  border-bottom: 0;
+}
+.card-comments .card-comment:first-of-type {
+  padding-top: 0;
+}
+.card-comments .card-comment img {
+  height: 1.875rem;
+  width: 1.875rem;
+  float: left;
+}
+.card-comments .comment-text {
+  color: #78838e;
+  margin-left: 40px;
+}
+.card-comments .username {
+  color: #495057;
+  display: block;
+  font-weight: 600;
+}
+.card-comments .text-muted {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  border-color: #ff556e !important;
+  border-style: solid !important;
+  border-width: 0 0 1px 0 !important;
+  padding: 0px !important;
+  color: #495057;
+  height: auto;
+  border-radius: 0;
+  background-color: #fff;
+  background-clip: padding-box;
+}
+
+.content {
+  padding: 4rem 1rem 4rem 1rem;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
+}
+.signin-text {
+  font-style: normal;
+  font-weight: 600 !important;
+}
+
+.btn-class {
+  border-color: #ff556e;
+  color: #ff556e;
+}
+.btn-class:hover {
+  background-color: #ff556e;
+  color: #fff;
 }
