@@ -48,6 +48,7 @@
 <div class="ex-basic-2">
   <div class="container mt-3">
     <div class="col-lg-12">
+      {% for comentarios in comentarios %}
       <div class="card-footer card-comments">
         <div class="card-comment">
           <!-- User image -->
@@ -59,42 +60,24 @@
 
           <div class="comment-text">
             <span class="username">
-              Maria Gonzales
-              <span class="text-muted float-right">8:03 PM Today</span> </span
+              {{comentarios['username']}}
+              <span class="text-muted float-right"
+                >{{comentarios['fecha']}}</span
+              > </span
             ><!-- /.username -->
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout.
+            {{comentarios['comentario']}}
           </div>
           <!-- /.comment-text -->
         </div>
-        <!-- /.card-comment -->
-        <div class="card-comment">
-          <!-- User image -->
-          <img
-            class="img-circle img-sm"
-            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-            alt="User Image"
-          />
-
-          <div class="comment-text">
-            <span class="username">
-              Luna Stark
-              <span class="text-muted float-right">8:03 PM Today</span> </span
-            ><!-- /.username -->
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout.
-          </div>
-          <!-- /.comment-text -->
-        </div>
-        <!-- /.card-comment -->
       </div>
+      {% endfor %}
       <!-- /.card-footer -->
       <div class="card-footer">
-        <form action="#" method="post">
+        <form action="/sitio/{{id}}" method="post">
           <div class="input-group">
             <input
               type="text"
-              name="message"
+              name="comentario"
               placeholder="Escribe tu comentario ..."
               class="form-control"
               autocomplete="OFF"

@@ -3,15 +3,18 @@ import os
 import requests
 from django.shortcuts import render
 
+import datetime
+import locale
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, jsonify
 from helpers import login_required
 from flask_session import Session
-from sqlalchemy import create_engine
-from sqlalchemy.sql.elements import Null
-from sqlalchemy.orm import scoped_session, sessionmaker
 from werkzeug.security import check_password_hash, generate_password_hash
 from tempfile import mkdtemp
+
+# fecha
+locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+x = datetime.datetime.now()
 
 app = Flask(__name__)
 
@@ -31,12 +34,29 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/sitio/<id>")
+@app.route("/sitio/<id>", methods=["GET", "POST"])
+@login_required
 def sitio(id):
+
+    if request.method == "POST":
+
+        comentario = request.form.get('comentario')
+
+        fecha = x.strftime("%I") + ':' + x.strftime("%M") + \
+            " " + x.strftime("%A")
+
+        iduser = db.execute(f"SELECT id from users where id=:id_user",
+                            id_user=session["user_id"])[0]["id"]
+
+        db.execute(
+            "INSERT INTO comentarios (comentario, fecha, iduser, idsitio) VALUES (:comentario, :fecha, :iduser, :idsitio)", comentario=comentario, fecha=fecha, iduser=iduser, idsitio=id)
 
     sitio = db.execute("SELECT * FROM sitios WHERE id=:id", id=id)
 
-    return render_template("sitios.html", sitio=sitio)
+    comentarios = db.execute(
+        "SELECT comentarios.comentario, comentarios.fecha, users.username FROM comentarios INNER JOIN users ON comentarios.iduser = users.id WHERE idsitio=:id", id=id)
+
+    return render_template("sitios.html", sitio=sitio, id=id, comentarios=comentarios)
 
 
 @app.route("/street")

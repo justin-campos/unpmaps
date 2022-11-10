@@ -130,6 +130,10 @@ a.red {
   color: #ff556eb6 !important;
 }
 
+.url {
+  text-decoration: none !important;
+}
+
 .btn-solid-reg {
   display: inline-block;
   padding: 1.1875rem 2.125rem 1.1875rem 2.125rem;
@@ -2300,4 +2304,12 @@ a:hover.back-to-top {
 .btn-class:hover {
   background-color: #ff556e;
   color: #fff;
+}
+
+.gm-style-mtc {
+  display: none;
+}
+
+.gm-svpc {
+  display: none;
 }
