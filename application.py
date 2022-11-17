@@ -11,14 +11,21 @@ from helpers import login_required
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from tempfile import mkdtemp
+from flask_socketio import SocketIO, emit, join_room, leave_room
 
 # fecha
 locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 x = datetime.datetime.now()
 
+
 app = Flask(__name__)
 
 db = SQL("sqlite:///unpmaps.db")
+
+app.config['SECRET_KEY'] = 'reemplazar_clave_secreta'
+
+# Instancia de SocketIo
+socketio = SocketIO(app, cors_allowed_origins='*')
 
 # Configure session to use filesystem
 app.config["SESSION_FILE_DIR"] = mkdtemp()
@@ -62,7 +69,17 @@ def sitio(id):
 @app.route("/street")
 def street():
 
-    return render_template("base.html")
+    return render_template("streetview.html")
+
+
+@app.route("/datos", methods=["GET", "POST"])
+def datos():
+
+    if request.method == "POST":
+        url = request.form.get('url')
+        print("hola mudno", url)
+
+    return render_template("datospersonales.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -111,7 +128,7 @@ def register():
         username = request.form.get('username')
         password = request.form.get('password')
         confirmation = request.form.get('confirmation')
-        # sustituir los apology por flash cuando hay un error y rederizar a registro.html
+
         if not username:
             flash("Username es requerido", 'error')
             return render_template("register.html")
@@ -150,3 +167,43 @@ def register():
 
     else:
         return render_template("register.html")
+
+
+@app.route("/logout")
+def logout():
+    """Log user out"""
+
+    # Forget any user_id
+    session.clear()
+
+    # Redirect user to login form
+    return redirect("/")
+
+
+@app.route('/chat', methods=["GET", "POST"])
+@login_required
+def chat():
+
+    us = db.execute(
+        "SELECT * FROM USERS WHERE id = :id", id=session["user_id"])
+
+    #session["user_id"] = id_user[0]["id"]
+    username = us[0]['username']
+
+    print(username)
+
+    return render_template("chat.html", username=username)
+
+
+@ socketio.on('saludar')
+def saludar(mensaje, user, fecha):
+
+    print("fecha: ", fecha)
+
+    data = {"message": mensaje, "username": user, "fecha": fecha}
+    # Emitir a todos con el argumento broadcast
+    emit('general', data,
+         broadcast=True, include_self=False)
+
+    # Enviar respuesta de evento emit al cliente
+    return (f'{mensaje}')

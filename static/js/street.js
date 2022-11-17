@@ -1,22 +1,9 @@
-let panorama;
-function initialize() {
-  panorama = new google.maps.StreetViewPanorama(
-    document.getElementById("street-view"),
-    {
-      position: { lat: 37.86926, lng: -122.254811 },
-      pov: { heading: 165, pitch: 0 },
-      zoom: 1,
-    }
-  );
-}
-window.initialize = initialize;
-
 function initPano() {
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function. Set the StreetView to display
   // the custom panorama 'reception' which we check for below.
   const panorama = new google.maps.StreetViewPanorama(
-    document.getElementById("map"),
+    document.getElementById("streetmap"),
     { pano: "reception", visible: true }
   );
 
@@ -24,31 +11,24 @@ function initPano() {
 }
 
 // Return a pano image given the panoID.
-function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
-  return (
-    "https://developers.google.com/maps/documentation/javascript/examples/full/images/" +
-    "panoReception1024-" +
-    zoom +
-    "-" +
-    tileX +
-    "-" +
-    tileY +
-    ".jpg"
-  );
+function getCustomPanoramaTileUrl() {
+  var URLdomain = window.location.host;
+  console.log("imagen:", imagen);
+  return "http://" + URLdomain + "/static/images/streetview/" + imagen;
 }
 
 // Construct the appropriate StreetViewPanoramaData given
 // the passed pano IDs.
 function getCustomPanorama(pano) {
   if (pano === "reception") {
+    // console.log(getCustomPanoramaTileUrl());
     return {
       location: {
         pano: "reception",
-        description: "Google Sydney - Reception",
+        description: sitio,
       },
       links: [],
-      // The text for the copyright control.
-      copyright: "Imagery (c) 2010 Google",
+
       // The definition of the tiles for this panorama.
       tiles: {
         tileSize: new google.maps.Size(1024, 512),
@@ -63,3 +43,5 @@ function getCustomPanorama(pano) {
   // @ts-ignore TODO fix typings
   return null;
 }
+
+window.initPano = initPano;

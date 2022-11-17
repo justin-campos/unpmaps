@@ -1,6 +1,6 @@
 {% extends 'layout.html'%} {% block title %}{% for sitio in sitio %}
 {{sitio["titulo"]}}{% endfor %} {% endblock %} {% block content %}
-
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <!-- Privacy Content -->
 {% for sitio in sitio %}
 <div class="ex-basic-2 mt-2">
@@ -24,17 +24,41 @@
       </div>
       <!-- end of text-container -->
 
-      <div class="text-container dark">
-        <p class="testimonial-text">{{sitio["informacion"]}}</p>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-container dark">
+              <p class="testimonial-text text-center">
+                {{sitio["informacion"]}}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+
       <!-- end of text container -->
       {% if sitio['stvbool'] == 1 %}
+
       <div class="container">
-        <h5>street view</h5>
+        <div class="row">
+          <div class="col-lg-12">
+            <div id="streetmap" style="height: 500px"></div>
+          </div>
+        </div>
       </div>
+
+      <script>
+        const sitio = '{{sitio["titulo"]}}';
+        const imagen = '{{sitio["streetview"]}}';
+      </script>
+
       {% endif %}
+      <div class="container">
+        <div class="row">
+          <a class="btn-solid-reg" href="/">REGRESAR</a>
+        </div>
+      </div>
       <!-- end of text-container -->
-      <a class="btn-solid-reg" href="/">REGRESAR</a>
     </div>
     <!-- end of col-->
 
@@ -43,6 +67,7 @@
   <!-- end of container -->
 </div>
 {% endfor %}
+
 <!-- end of ex-basic-2 -->
 <!-- end of privacy content -->
 <div class="ex-basic-2">
@@ -91,5 +116,12 @@
     </div>
   </div>
 </div>
+
+<script src="{{ url_for('static', filename='js/street.js')}}"></script>
+
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5J5DkU8qc2YKHEOBGARcs8DqMSpJHplA&callback=initPano&v=weekly"
+  defer
+></script>
 
 {% endblock %}
