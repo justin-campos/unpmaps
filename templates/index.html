@@ -87,16 +87,15 @@ content %}
       Filtrar
     </a>
     <div class="dropdown-menu">
+      <a class="dropdown-item" id="todos">Todos</a>
       <a class="dropdown-item" id="edificio">Edificios</a>
-      <a class="dropdown-item" href="#">Cafetines</a>
+      <a class="dropdown-item" id="cafetines">Cafetines</a>
       <a class="dropdown-item" href="#">Administrativo</a>
     </div>
   </div>
   <!-- <input class="buttoninmap" id="hide-markers" type="button" value="Ocultar marcador" /> -->
   <div id="map" style="height: 800px"></div>
 </div>
-
-
 
 <!-- script maps -->
 <script src="{{ url_for('static', filename='js/maps.js')}}"></script>

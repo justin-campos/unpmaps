@@ -2313,3 +2313,7 @@ a:hover.back-to-top {
 .gm-svpc {
   display: none;
 }
+
+.trash:hover {
+  color: #ff556e;
+}

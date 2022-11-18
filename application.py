@@ -1,8 +1,3 @@
-from asyncio.windows_events import NULL
-import os
-import requests
-from django.shortcuts import render
-
 import datetime
 import locale
 from cs50 import SQL
@@ -45,6 +40,9 @@ def index():
 @login_required
 def sitio(id):
 
+    iduser = session["user_id"]
+    print("iduser: ", iduser)
+
     if request.method == "POST":
 
         comentario = request.form.get('comentario')
@@ -61,9 +59,20 @@ def sitio(id):
     sitio = db.execute("SELECT * FROM sitios WHERE id=:id", id=id)
 
     comentarios = db.execute(
-        "SELECT comentarios.comentario, comentarios.fecha, users.username FROM comentarios INNER JOIN users ON comentarios.iduser = users.id WHERE idsitio=:id", id=id)
+        "SELECT comentarios.comentario, comentarios.fecha, users.username, comentarios.id, users.id as idusers FROM comentarios INNER JOIN users ON comentarios.iduser = users.id WHERE idsitio=:id", id=id)
 
-    return render_template("sitios.html", sitio=sitio, id=id, comentarios=comentarios)
+    return render_template("sitios.html", sitio=sitio, id=id, comentarios=comentarios, iduser=iduser)
+
+
+@app.route("/eliminar_comentario/<idcomentario>/<idsitio>", methods=["GET", "POST"])
+def eliminar(idcomentario, idsitio):
+
+    db.execute("DELETE FROM comentarios WHERE id =:idcomentario",
+               idcomentario=idcomentario)
+
+    flash("Comentario eliminado Correctamente!", 'exito')
+
+    return redirect(f"/sitio/{idsitio}")
 
 
 @app.route("/street")

@@ -1,5 +1,7 @@
 //EDIFICIO ARREGLO
+let todosmarcadores = [];
 let edificios = [];
+let cafetines = [];
 let kioscos = [];
 let infomarker = [];
 
@@ -144,10 +146,10 @@ function initMap() {
   const marker1 = new google.maps.Marker({
     position: { lat: 12.136868, lng: -86.219786 },
     map,
-    title: "Hello World ! ",
+    title: "Fruta Polar",
     animation: google.maps.Animation.DROP,
   });
-  kioscos.push(marker1);
+
   //animation
   marker1.addListener("click", () => {
     toggleBounce(1);
@@ -172,7 +174,6 @@ function initMap() {
     title: "Cafetines Don Domingo",
     animation: google.maps.Animation.DROP,
   });
-  kioscos.push(marker2);
 
   marker2.addListener("click", () => {
     toggleBounce(2);
@@ -856,6 +857,18 @@ function initMap() {
     });
   });
 
+  //-Todos los marcadores push
+  for (let i = 1; i < 30; i++) {
+    eval("todosmarcadores.push(marker" + i + ")");
+  }
+
+  //cafetines!
+  cafetines.push(marker1);
+  cafetines.push(marker2);
+  cafetines.push(marker3);
+  cafetines.push(marker4);
+  cafetines.push(marker10);
+
   //-------------------------------------
 
   //circle svg para los textos()
@@ -907,6 +920,9 @@ function initMap() {
   //marcador y poligono arreglo
   edificios.push(edificioipoly);
   edificios.push(edificioiMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificioipoly);
+  todosmarcadores.push(edificioiMarker);
 
   // EDIFICIO H
   const edificioh = [
@@ -949,6 +965,9 @@ function initMap() {
   //marcador y poligono arreglo
   edificios.push(edificiohpoly);
   edificios.push(edificiohMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificiohpoly);
+  todosmarcadores.push(edificiohMarker);
 
   // EDIFICIO F
   const edificiof = [
@@ -991,6 +1010,9 @@ function initMap() {
   //marcador y poligono arreglo
   edificios.push(edificiofpoly);
   edificios.push(edificiofMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificiofpoly);
+  todosmarcadores.push(edificiofMarker);
 
   //EDIFICIO d
 
@@ -1034,6 +1056,9 @@ function initMap() {
   //marcador y poligono arreglo
   edificios.push(edificiodpoly);
   edificios.push(edificiodMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificiodpoly);
+  todosmarcadores.push(edificiodMarker);
 
   //MARCADOR B
   const edificiobMarker = new google.maps.Marker({
@@ -1089,6 +1114,9 @@ function initMap() {
   //marcador y poligono arreglo
   edificios.push(edificioepoly);
   edificios.push(edificioeMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificioepoly);
+  todosmarcadores.push(edificioeMarker);
 
   //EDIFICIO B
   const edificiob = [
@@ -1119,6 +1147,9 @@ function initMap() {
   //marcador y poligono arreglo
   edificios.push(edificiobpoly);
   edificios.push(edificiobMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificiobpoly);
+  todosmarcadores.push(edificiobMarker);
 
   //EDIFICIO a
   const edificioa = [
@@ -1161,6 +1192,9 @@ function initMap() {
   //marcador y poligono arreglo
   edificios.push(edificioapoly);
   edificios.push(edificioaMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificioapoly);
+  todosmarcadores.push(edificioaMarker);
 
   //EDIFICIO G
   const edificiog = [
@@ -1203,6 +1237,97 @@ function initMap() {
   //marcador y poligono arreglo
   edificios.push(edificiogpoly);
   edificios.push(edificiogMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificiogpoly);
+  todosmarcadores.push(edificiogMarker);
+
+  //EDIFICIO a
+  const edificioj = [
+    { lat: 12.136942197361423, lng: -86.22036525755377 },
+    { lat: 12.136870085314293, lng: -86.2203826919117 },
+    { lat: 12.136949408565053, lng: -86.22074948398074 },
+    { lat: 12.137015620516612, lng: -86.22072199133936 },
+  ];
+
+  // EDIFICIO j
+  const edificiojpoly = new google.maps.Polygon({
+    paths: edificioj,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.35,
+    label: {
+      color: "#FF0000",
+      fontWeight: "bold",
+      fontSize: "20px",
+    },
+  });
+
+  edificiojpoly.setMap(map);
+
+  const edificiojMarker = new google.maps.Marker({
+    position: { lat: 12.136953094494631, lng: -86.22056949983914 },
+    map,
+    icon: svgcircle,
+    label: {
+      text: "EDIFICIO J",
+      color: "#000",
+      fontSize: "10px",
+      fontWeight: "400",
+    },
+  });
+
+  //marcador y poligono arreglo
+  edificios.push(edificiojpoly);
+  edificios.push(edificiojMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificiojpoly);
+  todosmarcadores.push(edificiojMarker);
+
+  //EDIFICIO k
+  const edificiok = [
+    { lat: 12.137066722542672, lng: -86.22084073365788 },
+    { lat: 12.136995778844023, lng: -86.22087741523002 },
+    { lat: 12.137259620214978, lng: -86.22122793800797 },
+    { lat: 12.137320587585133, lng: -86.22116155333734 },
+  ];
+
+  // EDIFICIO k
+  const edificiokpoly = new google.maps.Polygon({
+    paths: edificiok,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.35,
+    label: {
+      color: "#FF0000",
+      fontWeight: "bold",
+      fontSize: "20px",
+    },
+  });
+
+  edificiokpoly.setMap(map);
+
+  const edificiokMarker = new google.maps.Marker({
+    position: { lat: 12.137154730083136, lng: -86.22102476068272 },
+    map,
+    icon: svgcircle,
+    label: {
+      text: "EDIFICIO K",
+      color: "#000",
+      fontSize: "10px",
+      fontWeight: "400",
+    },
+  });
+
+  //marcador y poligono arreglo
+  edificios.push(edificiokpoly);
+  edificios.push(edificiokMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificiokpoly);
+  todosmarcadores.push(edificiokMarker);
 
   //animation
   function toggleBounce(x) {
@@ -1230,14 +1355,52 @@ function initMap() {
   }
   console.log(edificios);
   // add event listeners for the buttons
-  document.getElementById("edificio").addEventListener("click", edificiosshow);
+  document.getElementById("edificio").addEventListener("click", todosocultar2);
   function setMapOnEdifico(map) {
+    for (let i = 0; i < todosmarcadores.length; i++) {
+      todosmarcadores[i].setMap(map);
+    }
+  }
+  function setedificios(map) {
     for (let i = 0; i < edificios.length; i++) {
       edificios[i].setMap(map);
     }
   }
   // Removes the markers from the map, but keeps them in the array.
-  function edificiosshow() {
+  function todosocultar2() {
     setMapOnEdifico(null);
+    todosedificio();
+  }
+  function todosedificio() {
+    setedificios(map);
+  }
+
+  // Todas
+  document.getElementById("todos").addEventListener("click", todosshow);
+  function setMapOnTodos(map) {
+    for (let i = 0; i < todosmarcadores.length; i++) {
+      todosmarcadores[i].setMap(map);
+    }
+  }
+  // Removes the markers from the map, but keeps them in the array.
+  function todosshow() {
+    setMapOnTodos(map);
+  }
+
+  // Cafetines
+  document.getElementById("cafetines").addEventListener("click", todosocultar);
+
+  function setMapOnCafetines(map) {
+    for (let i = 0; i < cafetines.length; i++) {
+      todosmarcadores[i].setMap(map);
+    }
+  }
+  // Removes the markers from the map, but keeps them in the array.
+  function todosocultar() {
+    setMapOnTodos(null);
+    cafetinesshow();
+  }
+  function cafetinesshow() {
+    setMapOnCafetines(map);
   }
 }
