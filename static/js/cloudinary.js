@@ -23,6 +23,8 @@ imageUploader.addEventListener("change", async (e) => {
   //         console.log(response.data)
   //     })
   console.log(res);
+  $("#url").val(res.data.secure_url);
+  $("#avatarimg").attr("src", res.data.secure_url);
   url.value = res.data.secure_url;
   imagePreview.src = url.value;
 });

@@ -1,8 +1,9 @@
-//EDIFICIO ARREGLO
+//ARREGLO
 let todosmarcadores = [];
 let edificios = [];
 let cafetines = [];
 let kioscos = [];
+let administrativas = [];
 let infomarker = [];
 
 const unp = {
@@ -1329,6 +1330,14 @@ function initMap() {
   todosmarcadores.push(edificiokpoly);
   todosmarcadores.push(edificiokMarker);
 
+  //Push area administrativa
+  administrativas.push(marker11);
+  administrativas.push(marker20);
+  administrativas.push(marker25);
+  administrativas.push(marker26);
+  administrativas.push(marker28);
+  administrativas.push(marker29);
+
   //animation
   function toggleBounce(x) {
     //animacion de los
@@ -1402,5 +1411,24 @@ function initMap() {
   }
   function cafetinesshow() {
     setMapOnCafetines(map);
+  }
+
+  //administrativo
+  document
+    .getElementById("administrativo")
+    .addEventListener("click", todosocultar3);
+
+  function setMapOnAdministrativa(map) {
+    for (let i = 0; i < administrativas.length; i++) {
+      administrativas[i].setMap(map);
+    }
+  }
+  // Removes the markers from the map, but keeps them in the array.
+  function todosocultar3() {
+    setMapOnTodos(null);
+    administrativoshow();
+  }
+  function administrativoshow() {
+    setMapOnAdministrativa(map);
   }
 }

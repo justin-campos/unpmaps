@@ -487,7 +487,7 @@ block content %}
       <div class="col-lg-12">
         <div class="text-container">
           <div class="wrapper">
-            <
+            {% if datosp is none %}
             <form action="/datos" method="post" autocomplete="off">
               <h2>Datos Personales</h2>
               <div id="wizard">
@@ -496,28 +496,38 @@ block content %}
                   <div class="form-header">
                     <div class="avartar mr-3">
                       <img
+                        id="avatarimg"
                         src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                         alt=""
+                        width="100%"
+                        height="70%"
+                        class="rounded-circle shadow-4-strong imgavatar"
                       />
                       <div class="avartar-picker">
-                        <input id="url" name="url" hidden />
+                        <!-- <input id="url" name="url" hidden /> -->
 
                         <div class="form-group">
-                          <label>Imagen</label>
-                          <!-- <input
-                            name="imagen"
-                            type="file"
-                            class="form-control image-file"
-                            id="img-uploader"
-                          /> -->
-
-                          <!-- <progress id="img-upload-bar" value="0" max="100" style="width: 100%"></progress> -->
+                          <div class="avartar-picker">
+                            <input name="url" id="url" type="hidden" />
+                            <label for="url" onclick="$(this).next().click()">
+                              <i class="fas fa-camera"></i>
+                              <span>Imagen</span>
+                            </label>
+                            <input
+                              name="imagen"
+                              type="file"
+                              class="form-control image-file hide"
+                              id="img-uploader"
+                              style="display: none"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="form-holder active">
                         <input
+                          name="nombre"
                           type="text"
                           placeholder="  Nombres"
                           class="form-control"
@@ -525,40 +535,154 @@ block content %}
                       </div>
                       <div class="form-holder">
                         <input
+                          name="apellido"
                           type="text"
                           placeholder="   Apellidos"
                           class="form-control"
                         />
                       </div>
                       <div class="form-holder">
-                        <input
-                          type="text"
-                          placeholder="Team Name"
+                        <select
+                          name="carrera"
                           class="form-control"
-                        />
+                          aria-label="Default select example"
+                        >
+                          <option selected>CARRERAS</option>
+                          <option value="1">
+                            Ingeniería en Sistemas de información
+                          </option>
+                          <option value="2">Ingeniería en Computación</option>
+                          <option value="3">
+                            Ingeniería en Biotecnología Industrial
+                          </option>
+                          <option value="4">Administración de Empresas</option>
+                          <option value="5">
+                            Ciencias Política y Gestion Pública
+                          </option>
+                          <option value="6">Mercadotecnia</option>
+                          <option value="7">Derecho</option>
+                          <option value="8">Economia y Negocios</option>
+                          <option value="9">
+                            Diseño Integral de Comunicación
+                          </option>
+                          <option value="10">Diseño de Productos</option>
+                          <option value="11">Producción de Espectáculos</option>
+                          <option value="12">
+                            Enseñanza Artistica Musical
+                          </option>
+                          <option value="13">Licenciatura en Enfermería</option>
+                          <option value="14">
+                            Tecnico Superior en Enfermería
+                          </option>
+                          <option value="15">
+                            Gastronomia con Arte Culinario
+                          </option>
+                          <option value="16">
+                            Administración Turística y Hotelera
+                          </option>
+                        </select>
                       </div>
                     </div>
                   </div>
                   <div class="form-holder">
                     <input
+                      name="correo"
                       type="email"
                       placeholder="Correo Electronico"
                       class="form-control"
                       autocomplete="off"
                     />
                   </div>
-                  <div class="form-holder">
-                    <input
-                      type="text"
-                      placeholder="CARRERA"
-                      class="form-control"
-                      autocomplete="off"
-                    />
-                  </div>
+
                   <button class="btn-solid-lg">enviar</button>
                 </section>
               </div>
             </form>
+            {% else %} {% for datosp in datosp %}
+            <!-- <section>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <img src="{{datosp.imagen}}" alt="" />
+                  </div>
+                  <div class="col-lg-6">
+                    <p>{{datosp.nombre}}</p>
+                    <p>{{datosp.apellido}}</p>
+                    <p>{{datosp.correo}}</p>
+                  </div>
+                </div>
+              </div>
+            </section> -->
+            <section class="vh-100">
+              <div class="container">
+                <div
+                  class="row d-flex justify-content-center align-items-center h-100"
+                >
+                  <div class="col-lg-12">
+                    <div class="card" style="border-radius: 15px">
+                      <div class="card-body text-center">
+                        <div class="mt-3 mb-4">
+                          <img
+                            src="{{datosp.imagen}}"
+                            class="rounded-circle img-fluid"
+                            style="width: 100px"
+                          />
+                        </div>
+                        <h4 class="mb-2">
+                          {{datosp.nombre}} {{datosp.apellido}}
+                        </h4>
+                        <p class="text-muted mb-4">
+                          Estudiante <span class="mx-2">|</span>
+                          <a href="#!">{{datosp.correo}}</a>
+                        </p>
+                        <div class="mb-4 pb-2">
+                          <button
+                            type="button"
+                            class="btn btn-outline-danger btn-floating"
+                          >
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-outline-danger btn-floating"
+                          >
+                            <i class="fab fa-instagram fa-lg"></i>
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-outline-danger btn-floating"
+                          >
+                            <i class="fab fa-linkedin fa-lg"></i>
+                          </button>
+                        </div>
+                        <a
+                          href="/chat"
+                          class="btn btn-danger btn-rounded btn-lg"
+                          >Chat</a
+                        >
+                        <div
+                          class="d-flex justify-content-between text-center mt-5 mb-2"
+                        >
+                          <div>
+                            <p class="mb-2 h5">8471</p>
+                            <p class="text-muted mb-0">Wallets Balance</p>
+                          </div>
+                          <div class="px-3">
+                            <p class="mb-2 h5">8512</p>
+                            <p class="text-muted mb-0">Income amounts</p>
+                          </div>
+                          <div>
+                            <p class="mb-2 h5">4751</p>
+                            <p class="text-muted mb-0">Total Transactions</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            {% endfor %} {% endif %}
           </div>
         </div>
         <!-- end of text-container -->

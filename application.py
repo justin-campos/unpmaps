@@ -9,7 +9,6 @@ from tempfile import mkdtemp
 from flask_socketio import SocketIO, emit, join_room, leave_room
 
 # fecha
-locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 x = datetime.datetime.now()
 
 
@@ -59,7 +58,9 @@ def sitio(id):
     sitio = db.execute("SELECT * FROM sitios WHERE id=:id", id=id)
 
     comentarios = db.execute(
-        "SELECT comentarios.comentario, comentarios.fecha, users.username, comentarios.id, users.id as idusers FROM comentarios INNER JOIN users ON comentarios.iduser = users.id WHERE idsitio=:id", id=id)
+        "SELECT datospersonales.imagen,comentarios.comentario, comentarios.fecha, users.username, comentarios.id, users.id as idusers FROM comentarios INNER JOIN users ON comentarios.iduser = users.id LEFT JOIN datospersonales on datospersonales.iduser = comentarios.iduser WHERE idsitio=:id", id=id)
+
+    print("comentarios: ", comentarios)
 
     return render_template("sitios.html", sitio=sitio, id=id, comentarios=comentarios, iduser=iduser)
 
@@ -71,6 +72,20 @@ def eliminar(idcomentario, idsitio):
                idcomentario=idcomentario)
 
     flash("Comentario eliminado Correctamente!", 'exito')
+    return redirect(f"/sitio/{idsitio}")
+
+
+@app.route("/actualizar_comentario/<idsitio>/<idcomentario>", methods=["GET", "POST"])
+def actualizar(idsitio, idcomentario):
+
+    if request.method == "POST":
+
+        id = request.form.get("idcomentario")
+        comentario = request.form.get("comentario")
+        print("comentario:", comentario)
+
+        db.execute(
+            "UPDATE comentarios SET comentario = :comentario where id = :id", comentario=comentario, id=id)
 
     return redirect(f"/sitio/{idsitio}")
 
@@ -82,13 +97,28 @@ def street():
 
 
 @app.route("/datos", methods=["GET", "POST"])
+@login_required
 def datos():
 
-    if request.method == "POST":
-        url = request.form.get('url')
-        print("hola mudno", url)
+    iduser = session["user_id"]
 
-    return render_template("datospersonales.html")
+    if request.method == "POST":
+        nombre = request.form.get('nombre')
+        apellido = request.form.get('apellido')
+        carrera = request.form.get('carrera')
+        correo = request.form.get('correo')
+        url = request.form.get('url')
+
+        db.execute(
+            "INSERT INTO datospersonales (nombre, apellido, correo, imagen, carrera, iduser) VALUES (:nombre, :apellido, :correo, :imagen, :carrera, :iduser)", nombre=nombre, apellido=apellido, correo=correo, imagen=url, carrera=carrera, iduser=iduser)
+
+    datosp = db.execute(
+        "SELECT * FROM datospersonales WHERE iduser=:iduser", iduser=iduser)
+
+    if len(datosp) == 0:
+        datosp = None
+
+    return render_template("datospersonales.html", datosp=datosp)
 
 
 @app.route("/login", methods=["GET", "POST"])
