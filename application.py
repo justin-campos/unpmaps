@@ -245,3 +245,7 @@ def saludar(mensaje, user, fecha):
 
     # Enviar respuesta de evento emit al cliente
     return (f'{mensaje}')
+
+
+if __name__ == '__main__':
+    app.debug = True
