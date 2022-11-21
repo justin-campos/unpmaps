@@ -113,7 +113,7 @@ def datos():
             "INSERT INTO datospersonales (nombre, apellido, correo, imagen, carrera, iduser) VALUES (:nombre, :apellido, :correo, :imagen, :carrera, :iduser)", nombre=nombre, apellido=apellido, correo=correo, imagen=url, carrera=carrera, iduser=iduser)
 
     datosp = db.execute(
-        "SELECT * FROM datospersonales WHERE iduser=:iduser", iduser=iduser)
+        "SELECT datospersonales.nombre, datospersonales.apellido, datospersonales.correo, datospersonales.imagen, carreras.carrera FROM datospersonales INNER JOIN carreras ON carreras.id = datospersonales.carrera WHERE iduser=:iduser", iduser=iduser)
 
     if len(datosp) == 0:
         datosp = None
