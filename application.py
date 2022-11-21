@@ -1,5 +1,4 @@
 import datetime
-import locale
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, jsonify
 from helpers import login_required
