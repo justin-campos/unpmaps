@@ -21,7 +21,7 @@ app.config['SECRET_KEY'] = 'reemplazar_clave_secreta'
 socketio = SocketIO(app, cors_allowed_origins='*')
 
 # Configure session to use filesystem
-app.config["SESSION_FILE_DIR"] = mkdtemp()
+app.config["SESSION_FILE_DIR"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 Session(app)
