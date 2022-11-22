@@ -828,7 +828,6 @@ input[type="checkbox"] {
   position: relative;
   overflow: hidden;
   padding-top: 5rem;
-  padding-bottom: 3rem;
   background-color: #f7fafd;
   text-align: center;
 }
@@ -838,7 +837,7 @@ input[type="checkbox"] {
 }
 
 .header .text-container {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .header h1 {
@@ -2316,4 +2315,8 @@ a:hover.back-to-top {
 
 .trash:hover {
   color: #ff556e;
+}
+
+.hoverlist:hover {
+  background-color: #ff556e;
 }

@@ -195,12 +195,12 @@
           />
 
           <div class="comment-text">
-            <span class="username">
-              {{comentarios['username']}}
-              <span class="text-muted float-right"
-                >{{comentarios['fecha']}}</span
-              > </span
-            ><!-- /.username -->
+            <a href="/datos/{{comentarios['iduser']}}">
+              <span class="username"> {{comentarios['username']}}</span>
+            </a>
+
+            <span class="text-muted float-right">{{comentarios['fecha']}}</span>
+            <!-- /.username -->
             {{comentarios['comentario']}}
           </div>
           <!-- /.comment-text -->

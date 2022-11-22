@@ -68,7 +68,7 @@ def sitio(id):
     sitio = db.execute("SELECT * FROM sitios WHERE id=:id", id=id)
 
     comentarios = db.execute(
-        "SELECT datospersonales.imagen,comentarios.comentario, comentarios.fecha, users.username, comentarios.id, users.id as idusers FROM comentarios INNER JOIN users ON comentarios.iduser = users.id LEFT JOIN datospersonales on datospersonales.iduser = comentarios.iduser WHERE idsitio=:id", id=id)
+        "SELECT comentarios.iduser, datospersonales.imagen,comentarios.comentario, comentarios.fecha, users.username, comentarios.id, users.id as idusers FROM comentarios INNER JOIN users ON comentarios.iduser = users.id LEFT JOIN datospersonales on datospersonales.iduser = comentarios.iduser WHERE idsitio=:id", id=id)
 
     print("comentarios: ", comentarios)
 
@@ -100,10 +100,10 @@ def actualizar(idsitio, idcomentario):
     return redirect(f"/sitio/{idsitio}")
 
 
-@app.route("/street")
+@app.route("/acercade")
 def street():
 
-    return render_template("streetview.html")
+    return render_template("acercade.html")
 
 
 @app.route("/datos", methods=["GET", "POST"])
@@ -129,6 +129,19 @@ def datos():
         datosp = None
 
     return render_template("datospersonales.html", datosp=datosp)
+
+
+@app.route("/datos/<iduser>", methods=["GET", "POST"])
+@login_required
+def datos_usuarios(iduser):
+
+    datosusuarios = db.execute(
+        "SELECT datospersonales.nombre, datospersonales.apellido, datospersonales.correo, datospersonales.imagen, carreras.carrera FROM datospersonales INNER JOIN carreras on carreras.id = datospersonales.carrera where iduser = :iduser", iduser=iduser)
+
+    if len(datosusuarios) == 0:
+        datosusuarios = None
+
+    return render_template("datosusuarios.html", datosusuarios=datosusuarios)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -236,10 +249,7 @@ def chat():
     us = db.execute(
         "SELECT * FROM USERS WHERE id = :id", id=session["user_id"])
 
-    #session["user_id"] = id_user[0]["id"]
     username = us[0]['username']
-
-    print(username)
 
     return render_template("chat.html", username=username)
 
