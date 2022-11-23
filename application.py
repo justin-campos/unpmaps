@@ -45,6 +45,13 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/edificio")
+@login_required
+def edificio():
+
+    return render_template("edificio.html")
+
+
 @app.route("/sitio/<id>", methods=["GET", "POST"])
 @login_required
 def sitio(id):

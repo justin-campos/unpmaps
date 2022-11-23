@@ -877,7 +877,8 @@ function initMap() {
     path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
     fillOpacity: 0.0,
     strokeOpacity: 0,
-    anchor: new google.maps.Point(0, 0),
+    strokeWeight: 30,
+    anchor: new google.maps.Point(10, 0),
   };
   //==EDIFICIOS==
   //edificio i
@@ -1189,6 +1190,10 @@ function initMap() {
       fontWeight: "400",
     },
   });
+  edificioaMarker.addListener("click", () => {
+    location.href = "/edificio";
+  });
+  // edificioaMarker.addListener("click", (location.href = "new_url"));
 
   //marcador y poligono arreglo
   edificios.push(edificioapoly);
@@ -1329,6 +1334,146 @@ function initMap() {
   //-todosmacardaores
   todosmarcadores.push(edificiokpoly);
   todosmarcadores.push(edificiokMarker);
+
+  // , ;
+  // , ;
+  // , ;
+  // , ;
+
+  //EDIFICIO k
+  const edificiol = [
+    { lat: 12.137359908454416, lng: -86.22113951073204 },
+    { lat: 12.137719156707796, lng: -86.22140907272792 },
+    { lat: 12.137671956234996, lng: -86.22147478684633 },
+    { lat: 12.137316641296316, lng: -86.22120120153708 },
+  ];
+
+  // EDIFICIO k
+  const edificiolpoly = new google.maps.Polygon({
+    paths: edificiol,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.35,
+    label: {
+      color: "#FF0000",
+      fontWeight: "bold",
+      fontSize: "20px",
+    },
+  });
+
+  edificiolpoly.setMap(map);
+
+  const edificiolMarker = new google.maps.Marker({
+    //,
+    position: { lat: 12.137517243514983, lng: -86.22133128867067 },
+    map,
+    icon: svgcircle,
+    label: {
+      text: "EDIFICIO L",
+      color: "#000",
+      fontSize: "10px",
+      fontWeight: "400",
+    },
+  });
+
+  //marcador y poligono arreglo
+  edificios.push(edificiolpoly);
+  edificios.push(edificiolMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificiolpoly);
+  todosmarcadores.push(edificiolMarker);
+
+  //EDIFICIO k
+  const edificiom = [
+    { lat: 12.137758761971373, lng: -86.22135561099432 },
+    { lat: 12.137878729788312, lng: -86.22139316191893 },
+    { lat: 12.138014431019755, lng: -86.22135561099412 },
+    { lat: 12.138041964594512, lng: -86.22141461959025 },
+    { lat: 12.137879385349995, lng: -86.22147832205196 },
+    { lat: 12.137732539495465, lng: -86.22143339505266 },
+  ];
+
+  // EDIFICIO k
+  const edificiompoly = new google.maps.Polygon({
+    paths: edificiom,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.35,
+    label: {
+      color: "#FF0000",
+      fontWeight: "bold",
+      fontSize: "20px",
+    },
+  });
+
+  edificiompoly.setMap(map);
+
+  const edificiomMarker = new google.maps.Marker({
+    position: { lat: 12.137902330007453, lng: -86.22143406560488 },
+    map,
+    icon: svgcircle,
+    label: {
+      text: "EDIFICIO M",
+      color: "#000",
+      fontSize: "10px",
+      fontWeight: "400",
+    },
+  });
+
+  //marcador y poligono arreglo
+  edificios.push(edificiompoly);
+  edificios.push(edificiomMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificiompoly);
+  todosmarcadores.push(edificiomMarker);
+
+  //EDIFICIO C
+  const edificioc = [
+    { lat: 12.137322440806818, lng: -86.21959280668332 },
+    { lat: 12.137297529410114, lng: -86.21919516921179 },
+    { lat: 12.137174939081904, lng: -86.21920589804743 },
+    { lat: 12.137203128306748, lng: -86.21960286496676 },
+  ];
+
+  // EDIFICIO k
+  const edificiocpoly = new google.maps.Polygon({
+    paths: edificioc,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.35,
+    label: {
+      color: "#FF0000",
+      fontWeight: "bold",
+      fontSize: "20px",
+    },
+  });
+
+  edificiocpoly.setMap(map);
+
+  const edificiocMarker = new google.maps.Marker({
+    position: { lat: 12.137210339503328, lng: -86.21938761770139 },
+    map,
+    icon: svgcircle,
+    label: {
+      text: "EDIFICIO C",
+      color: "#000",
+      fontSize: "10px",
+      fontWeight: "400",
+    },
+  });
+
+  //marcador y poligono arreglo
+  edificios.push(edificiocpoly);
+  edificios.push(edificiocMarker);
+  //-todosmacardaores
+  todosmarcadores.push(edificiocpoly);
+  todosmarcadores.push(edificiocMarker);
 
   //Push area administrativa
   administrativas.push(marker11);
